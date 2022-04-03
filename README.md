@@ -2,7 +2,7 @@
 
 Repository klónozása
 
-	https://github.com/szabopeter1/ansible-fedora-setup.git ~/.setup
+	git clone https://github.com/szabopeter1/ansible-fedora-setup.git ~/.setup
 
 Playbook indítása
 
