@@ -9,6 +9,12 @@
 
 - name: Create symbolic links
   block:
+  
+    - name: Dir create for kitty
+      file:
+        path: ~/.config/kitty
+        state: directory
+
     - name: kitty
       file:
         state: link
@@ -22,6 +28,11 @@
         force: yes
         src: ~/.dotfiles/.vimrc
         dest: ~/.vimrc
+
+    - name: Dir create for rofi
+      file:
+        path: ~/.config/rofi
+        state: directory
 
     - name: rofi
       file:
