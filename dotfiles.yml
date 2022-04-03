@@ -1,0 +1,41 @@
+---
+- name: Clone the dotfiles repo
+  git:
+    repo: https://github.com/szabopeter1/.dotfiles
+    dest: ~/.dotfiles
+    clone: yes
+    update: yes
+    force: yes
+
+- name: Create symbolic links
+  block:
+    - name: kitty
+      file:
+        state: link
+        force: yes
+        src: ~/.dotfiles/kitty.conf
+        dest: ~/.config/kitty/kitty.conf
+
+    - name: vim
+      file:
+        state: link
+        force: yes
+        src: ~/.dotfiles/.vimrc
+        dest: ~/.vimrc
+
+    - name: rofi
+      file:
+        state: link
+        force: yes
+        src: ~/.dotfiles/config.rasi
+        dest: ~/.config/rofi/config.rasi
+
+    - name: xterm
+      file:
+        state: link
+        force: yes
+        src: ~/.dotfiles/.Xresources
+        dest: ~/.Xresources
+
+    - name: Xresources reload
+      ansible.builtin.shell: xrdb -merge ~/.Xresources

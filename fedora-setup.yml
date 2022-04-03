@@ -1,0 +1,66 @@
+---
+- hosts: local
+  tasks:
+    - name: Add rpmfusion
+      become: true
+      dnf:
+        state: present
+        disable_gpg_check: yes
+        name:
+          - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm
+          - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm
+
+    - name: Update package list
+      become: true
+      dnf:
+        update_cache: true
+
+    - name: Upgrade all packages
+      become: true
+      dnf:
+        name: '*'
+        state: latest
+
+    - name: Install basic packages
+      become: true
+      dnf:
+        state: latest
+        name:
+         - libreoffice
+         - vlc
+         - gimp
+         - nomacs
+         - discord
+         - steam
+         - chromium
+         - firefox
+         - doublecmd-qt
+         - gnome-tweaks
+         - neofetch
+         - htop
+         - rofi
+
+    - name: Install dev packages
+      become: true
+      dnf:
+        state: latest
+        name:
+         - vim
+         - vim-powerline
+         - curl
+         - wget
+         - git
+         - mc
+         - kitty
+         - xterm
+         - tmux
+         - g++
+         - golang
+         - dotnet-sdk-5.0
+         - npm
+
+    - name: Setup gnome
+      include_tasks: gnome-settings.yml
+
+    - name: Dotfiles setup
+      include: dotfiles.yml

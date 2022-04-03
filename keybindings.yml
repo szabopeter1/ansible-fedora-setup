@@ -1,0 +1,25 @@
+---
+- name: Keybindings -- Close application
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/close"
+    value: "['<Super>q']"
+
+- name: Keybindings -- Minimize application
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/minimize"
+    value: "['<Super>h']"
+
+- name: Keybindings -- Rofi open
+  block:
+    - name: Rofi shortcut name
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+        value: "'Rofi'"
+    - name: Rofi shortcut command
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+        value: "'rofi -show run'"
+    - name: Rofi shortcut binding
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+        value: "'<Super>Return'"
