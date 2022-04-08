@@ -1,7 +1,7 @@
 ---
 - name: Clone the dotfiles repo
   git:
-    repo: https://github.com/szabopeter1/.dotfiles
+    repo: https://github.com/szabopeter1/dotfiles
     dest: ~/.dotfiles
     clone: yes
     update: yes
