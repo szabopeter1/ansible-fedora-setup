@@ -80,7 +80,7 @@
          - g++
          - golang
          - dotnet-sdk-6.0
-         - java-17-open-jdk
+         - java-17-openjdk
          - npm
          - atom
          - code
