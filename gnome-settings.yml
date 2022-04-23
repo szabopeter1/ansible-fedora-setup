@@ -103,4 +103,4 @@
       value: "false"
 
   - name: Gnome-settings -- Include Gnome-keyboard-shortcuts playbook
-    include: keybindings.yml
+    include_tasks: keybindings.yml
