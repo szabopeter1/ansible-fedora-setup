@@ -86,23 +86,8 @@
          - code
          - ghostwriter
 
-    - name: flathub flatpak repo
-      become: true
-      flatpak_remote:
-        name: flathub
-        state: present
-        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-        method: system
-
-    - name: Install flatpak packages
-      flatpak:
-        name: io.dbeaver.DBeaverCommunity, io.github.shiftey.Desktop
-
-    - name: Make rofi work with Flatpak
-      include_tasks: flatpak-rofi.yml
-
     - name: Setup gnome
       include_tasks: gnome-settings.yml
 
     - name: Dotfiles setup
-      include: dotfiles.yml
+      include_tasks: dotfiles.yml
