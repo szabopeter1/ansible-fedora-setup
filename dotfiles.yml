@@ -29,6 +29,13 @@
         src: ~/.dotfiles/.vimrc
         dest: ~/.vimrc
 
+    - name: bash
+      file:
+        state: link
+        force: yes
+        src: ~/.dotfiles/.bashrc
+        dest: ~/.bashrc
+
     - name: Dir create for rofi
       file:
         path: ~/.config/rofi
