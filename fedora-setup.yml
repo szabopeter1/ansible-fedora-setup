@@ -10,17 +10,6 @@
           - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm
           - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm
 
-    - name: Install Atom text editor - Import key
-      become: true
-      ansible.builtin.rpm_key:
-        state: present
-        key: https://packagecloud.io/AtomEditor/atom/gpgkey
-
-    - name: Install Atom text editor - Add repo
-      become: true
-      ansible.builtin.shell:
-        cmd: 'echo -e "[Atom]\nname=Atom Editor\nbaseurl=https://packagecloud.io/AtomEditor/atom/el/7/\$basearch\nenabled=1\ngpgcheck=0\nrepo_gpgcheck=1\ngpgkey=https://packagecloud.io/AtomEditor/atom/gpgkey" > /etc/yum.repos.d/atom.repo'
-
     - name: Install VS Code - Import key
       become: true
       ansible.builtin.rpm_key:
@@ -82,7 +71,6 @@
          - dotnet-sdk-6.0
          - java-17-openjdk
          - npm
-         - atom
          - code
          - ghostwriter
 
