@@ -10,16 +10,6 @@
     value: "['<Super>h']"
 
 - name: Keybindings -- Rofi open
-  block:
-    - name: Rofi shortcut name
-      dconf:
-        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
-        value: "'Rofi'"
-    - name: Rofi shortcut command
-      dconf:
-        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
-        value: "'rofi -show run'"
-    - name: Rofi shortcut binding
-      dconf:
-        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
-        value: "'<Super>Return'"
+  become: true
+  ansible.builtin.shell:
+    cmd: dconf load / < ~/.setup/custom_keybindings.conf
