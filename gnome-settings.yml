@@ -9,19 +9,19 @@
         - python3-psutil
         - dconf
 
-#### Switch to Xorg ####
+#### Switch to Xorg (after reboot) ####
   - name: Open /etc/gdm/custom.conf and uncomment
     become: true
     replace:
       path: /etc/gdm/custom.conf
-      regexp: '#(\s+)WaylandEnable=false'
+      regexp: '#WaylandEnable=false'
       replace: 'WaylandEnable=false'
 
   - name: Add a line to a file
     become: true
     lineinfile:
       path: /etc/gdm/custom.conf
-      insertafter: '^[daemon]'
+      insertafter: '[daemon]'
       line: 'DefaultSession=gnome-xorg.desktop'
 ####
 
