@@ -10,6 +10,5 @@
     value: "['<Super>h']"
 
 - name: Keybindings -- Rofi open
-  become: true
   ansible.builtin.shell:
     cmd: dconf load / < ~/.setup/custom_keybindings.conf
