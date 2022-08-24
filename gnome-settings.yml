@@ -42,6 +42,11 @@
       key: "/org/gnome/desktop/interface/gtk-theme"
       value: "'Adwaita-dark'"
 
+  - name: Gnome-settings -- Dark scheme
+    dconf:
+      key: "/org/gnome/desktop/interface/color-scheme"
+      value: "'prefer-dark'"
+
   - name: Gnome-settings -- Default terminal
     dconf:
       key: "/org/gnome/desktop/application/terminal/exec"
@@ -56,6 +61,11 @@
   - name: Gnome-settings -- Touchpad mouse click
     dconf:
       key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+      value: "true"
+
+  - name: Gnome-settings -- Touchpad scroll
+    dconf:
+      key: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled"
       value: "true"
 
   - name: Gnome-settings -- Inactive timeout (AC)
