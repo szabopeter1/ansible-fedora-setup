@@ -19,17 +19,6 @@
     key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
     value: "['<Shift><Alt>Tab']"
 
-- name: Keybindings -- Switch applications (OFF)
-  dconf:
-    key: "/org/gnome/desktop/wm/keybindings/switch-applications"
-    value: "[]"
-
-- name: Keybindings -- Switch applications backward (OFF)
-  dconf:
-    key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward"
-    value: "[]"
-
-
 - name: Keybindings -- Rofi open
   ansible.builtin.shell:
     cmd: dconf load / < ~/.setup/custom_keybindings.conf
