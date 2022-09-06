@@ -68,6 +68,11 @@
       key: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled"
       value: "true"
 
+  - name: Gnome-settings -- Touchpad natural-scroll
+    dnatural-conf:
+      key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
+      value: "true"
+
   - name: Gnome-settings -- Inactive timeout (AC)
     dconf:
       key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-timeout"
