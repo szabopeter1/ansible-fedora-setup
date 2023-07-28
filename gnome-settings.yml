@@ -69,7 +69,7 @@
       value: "true"
 
   - name: Gnome-settings -- Touchpad natural-scroll
-    dnatural-conf:
+    dconf:
       key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
       value: "true"
 
