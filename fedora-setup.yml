@@ -1,15 +1,7 @@
 ---
 - hosts: local
   tasks:
-    - name: Add rpmfusion
-      become: true
-      dnf:
-        state: present
-        disable_gpg_check: yes
-        name:
-          - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm
-          - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm
-
+       
     - name: Install VS Code - Add repo/Import key
       become: true
       yum_repository:
@@ -17,14 +9,6 @@
         description: VS Code YUM repo
         baseurl: https://packages.microsoft.com/yumrepos/vscode
         gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-
-    - name: Install Brave - Add repo/Import key
-      become: true
-      yum_repository:
-        name: Brave
-        description: Brave YUM repo
-        baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
-        gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
     - name: Update package list
       become: true
@@ -37,6 +21,23 @@
         name: '*'
         state: latest
 
+    - name: Uninstall unnecessary packages
+      become: true
+      dnf:
+        state: absent
+        autoremove: yes
+        name: 
+          - loupe
+          - gnome-tour
+          - gnome-weather
+          - gnome-contacts
+          - gnome-maps
+          - totem
+          - evolution
+          - rhythmbox
+          - cheese
+          - yelp
+
     - name: Install basic packages
       become: true
       dnf:
@@ -48,9 +49,9 @@
          - nomacs
          - discord
          - steam
-         - brave-browser
+         - chromium
          - firefox
-         - doublecmd-qt
+         - doublecmd-gtk
          - gnome-tweaks
          - neofetch
          - htop
@@ -73,8 +74,8 @@
          - tmux
          - g++
          - golang
-         - dotnet-sdk-6.0
-         - java-17-openjdk
+         - dotnet-sdk-8.0
+         - java-21-openjdk
          - npm
          - code
          - ghostwriter
