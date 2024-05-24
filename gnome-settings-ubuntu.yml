@@ -1,0 +1,121 @@
+---
+- name: Setup Gnome
+  block:
+  - name: Gnome-settings -- Install playbook requirements
+    become: true
+    package:
+      state: latest
+      name:
+        - python3-psutil
+        - dconf-cli
+
+#### Switch to Xorg (after reboot) ####
+  - name: Open /etc/gdm3/custom.conf and uncomment
+    become: true
+    replace:
+      path: /etc/gdm3/custom.conf
+      regexp: '#WaylandEnable=false'
+      replace: 'WaylandEnable=false'
+
+  - name: Add a line to a file
+    become: true
+    lineinfile:
+      path: /etc/gdm3/custom.conf
+      insertafter: '[daemon]'
+      line: 'DefaultSession=gnome-xorg.desktop'
+####
+
+
+  - name: Gnome-settings -- Configure hungarian keyboard layout in Gnome
+    dconf:
+      key: "/org/gnome/desktop/input-sources/sources"
+      value: "[('xkb', 'hu')]"
+      state: present
+
+  - name: Gnome-settings -- Workspaces
+    dconf:
+      key: "/org/gnome/desktop/wm/preferences/num-workspaces"
+      value: "3"
+
+  - name: Gnome-settings -- Dark theme
+    dconf:
+      key: "/org/gnome/desktop/interface/gtk-theme"
+      value: "'Adwaita-dark'"
+
+  - name: Gnome-settings -- Dark scheme
+    dconf:
+      key: "/org/gnome/desktop/interface/color-scheme"
+      value: "'prefer-dark'"
+
+  - name: Gnome-settings -- Default terminal
+    dconf:
+      key: "/org/gnome/desktop/application/terminal/exec"
+      value: "'kitty'"
+
+  - name: Gnome-settings -- Button layout
+    dconf:
+      key: "/org/gnome/desktop/wm/preferences/button-layout"
+      value: "'appmenu:minimize,maximize,close'"
+
+### Laptop ###
+  - name: Gnome-settings -- Touchpad mouse click
+    dconf:
+      key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+      value: "true"
+
+  - name: Gnome-settings -- Touchpad scroll
+    dconf:
+      key: "/org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled"
+      value: "true"
+
+  - name: Gnome-settings -- Touchpad natural-scroll
+    dconf:
+      key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
+      value: "true"
+
+  - name: Gnome-settings -- Inactive timeout (AC)
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-timeout"
+      value: "3600"
+  - name: Gnome-settings -- Inactive timeout type
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
+      value: "'suspend'"
+
+  - name: Gnome-settings -- Show battery percentage
+    dconf:
+      key: "/org/gnome/desktop/interface/show-battery-percentage"
+      value: "true"
+
+  - name: Gnome-settings -- Inactive timeout (Battery)
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-timeout"
+      value: "1200"
+  - name: Gnome-settings -- Inactive timeout type
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-type"
+      value: "'suspend'"
+
+  - name: Gnome-settings -- Turn off screen when idle
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/idle-dm"
+      value: "true"
+
+  - name: Gnome-settings -- Set screen brightness when idle
+    dconf:
+      key: "/org/gnome/settings-daemon/plugins/power/brightness"
+      value: "25"
+
+###
+  - name: Gnome-settings -- 24h clock format
+    dconf:
+      key: "/org/gnome/desktop/interface/clock-format"
+      value: "'24h'"
+
+  - name: Gnome-settings -- disable hot corner
+    dconf:
+      key: "/org/gnome/desktop/interface/enable-hot-corners"
+      value: "false"
+
+  - name: Gnome-settings -- Include Gnome-keyboard-shortcuts playbook
+    include_tasks: keybindings.yml

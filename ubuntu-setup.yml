@@ -1,0 +1,91 @@
+---
+- hosts: local
+  tasks:
+
+    - name: Update package list
+      become: true
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages
+      become: true
+      apt:
+        name: '*'
+        state: latest
+
+    - name: Uninstall unnecessary packages
+      become: true
+      apt:
+        state: absent
+        autoremove: yes
+        purge: yes
+        pkg:
+          - gnome-tour
+          - gnome-weather
+          - gnome-contacts
+          - gnome-maps
+          - totem
+          - evolution
+          - rhythmbox
+          - cheese
+          - yelp
+
+    - name: Install basic packages
+      become: true
+      apt:
+        state: latest
+        pkg:
+         - libreoffice
+         - vlc
+         - gimp
+         - nomacs
+         - firefox
+         - doublecmd-gtk
+         - gnome-tweaks
+         - neofetch
+         - htop
+         - rofi
+         - remmina
+
+    - name: Install dev packages
+      become: true
+      apt:
+        state: latest
+        pkg:
+         - vim-nox
+         - vim-airline
+         - curl
+         - wget
+         - git
+         - mc
+         - kitty
+         - xterm
+         - tmux
+         - g++
+         - golang
+         - dotnet-sdk-8.0
+         - openjdk-21-jdk
+         - npm
+         - ghostwriter
+
+    - name: Install snap packages -- with classic tag
+      become: true
+      snap:
+        classic: yes
+        name:
+          - code
+          - intellij-idea-community
+
+    - name: Install snap packages
+      become: true
+      snap:
+        name:
+          - chromium
+          - steam
+          - discord
+
+    - name: Setup gnome
+      include_tasks: gnome-settings-ubuntu.yml
+
+    - name: Dotfiles setup
+      include_tasks: dotfiles.yml
