@@ -1,5 +1,15 @@
 # ansible-setup
 
+##### Fedora
+
+	sudo dnf install git ansible
+
+##### Ubuntu
+
+	sudo apt install git ansible
+
+---
+
 ##### Clone the repo
 
 	git clone https://github.com/szabopeter1/ansible-setup.git ~/.setup
@@ -9,10 +19,12 @@
 
 	cd ~/.setup
 
-##### If the system is Fedora start this
+---
+
+##### Fedora
 
 	ansible-playbook -K fedora-setup.yml
 
-##### If the system is Ubuntu start this
+##### Ubuntu
 
 	ansible-playbook -K ubuntu-setup.yml
