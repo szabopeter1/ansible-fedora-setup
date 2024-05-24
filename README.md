@@ -1,14 +1,18 @@
-# ansible-fedora-setup
+# ansible-setup
 
-##### Repository klónozása
+##### Clone the repo
 
-	git clone https://github.com/szabopeter1/ansible-fedora-setup.git ~/.setup
+	git clone https://github.com/szabopeter1/ansible-setup.git ~/.setup
 
 
-##### Playbook könyvtárába lépés
+##### Change directory to playbook's directory
 
 	cd ~/.setup
 
-##### Playbook indítása
+##### If the system is Fedora start this
 
 	ansible-playbook -K fedora-setup.yml
+
+##### If the system is Ubuntu start this
+
+	ansible-playbook -K ubuntu-setup.yml
